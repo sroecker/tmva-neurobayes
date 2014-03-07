@@ -427,7 +427,7 @@ void TMVA::MethodNeuroBayes::runAnalysis() {
 
 	TString PSFileName = GetJobName() + "_" + GetMethodName() + ".pdf";
 	std::stringstream analysis_exec;
-	analysis_exec << "root -b -q $NEUROBAYES/external/analysis.C'(\""+GetJobName()+"ahist.txt\",\"";
+	analysis_exec << "root -b -q $NEUROBAYES/external/analysis.C'(\"ahist.txt\",\"";
 	analysis_exec << PSFileName;
 	analysis_exec << "\",1,\""+GetJobName()+"correl_signi.txt\")'";
 	//gSystem->Exec("root -b -q $NEUROBAYES/external/analysis.C'(\"ahist.txt\",\"analysis.ps\",1,\"correl_signi.txt\")' && echo \"analysis.ps was generated\""); 

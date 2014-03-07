@@ -1,34 +1,18 @@
 This Plugin was developed for use with TMVA included in ROOT-5.24 and later.
 For ROOT-5.18 till 5.22 please use the older one.
 
-At the time being, the plugin won't be usable without adding the file 
-addinMethod/MethodPlugins.cxx into <yourroot_folder>/tmva/src and recompiling.
-(This is needed in order to register the pluginhandler as a constructor in the 
-TMVA-Factory.)
+Installation:
 
-Afterwards compiling and installing of this plugin is done in these steps:
-
-1. It is assumed you have ROOT and NeuroBayes installed, you have added MethodPlugins.cxx 
-   into the tmva/src folder as described above and ran 'make' again in the ROOT folder.
-   So make sure you have setup your environment
+1. It is assumed you have ROOT and NeuroBayes installed. So make sure you have setup your environment
 	export ROOTSYS=<your path to root sources>
 	export NEUROBAYES=<your Path to NeuroBayes>
 	export LD_LIBRARY_PATH=$NEUROBAYES/lib:$ROOTSYS/lib:$LD_LIBRARY_PATH
 
 2. In your NeuroBayesTMVAPlugin folder run "make"
+
 3. (Optionally) If the above step went fine run "make install" which will copy 
    the generated library to the ROOTSYS/lib folder (makes only sense if you have write access
    to the ROOT-folder of cause). However one can also just add the plugins folder to
    the LD_LIBRARY_PATH, which should also work fine.
-
-To actually use the plugin ROOT must be told how to use it. This is simply done
-with an .rootrc file in the folder where your TMVA macro resides. It has to contain
-the following two lines.
-Plugin.TMVA@@MethodBase: .*_NeuroBayes.*     TMVA::MethodNeuroBayes TMVANeuroBayes "MethodNeuroBayes(DataSetInfo&,TString)"
-+Plugin.TMVA@@MethodBase:  .*NeuroBayes.* TMVA::MethodNeuroBayes TMVANeuroBayes "MethodNeuroBayes(TString&,TString&,DataSetInfo&,TString&)"
-
-(NOTE: this has changed compared to the older version of the plugin!)
-
-An example .rootrc file is shipped with this package.
 
 In case of errors or bugs concerning the plugin, please file a ticket at neurobayes.phi-t.de

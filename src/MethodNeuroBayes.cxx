@@ -19,6 +19,7 @@
 #include "TMVA/Timer.h"
 #ifndef ROOT_TMVA_MethodBase
 #include "TMVA/MethodBase.h"
+#include "TMVA/ClassifierFactory.h"
 #endif
 #include <RVersion.h>
 
@@ -417,18 +418,18 @@ void TMVA::MethodNeuroBayes::runAnalysis() {
 		tmpstring << GetInternalVarName(ivar) << " " << preproFlagsarray[ivar];
 		strcpy(c_varnames[ivar], tmpstring.str().c_str() );
 	}
-	nb->nb_correl_signi(c_varnames,"./correl_signi.txt","./correl_signi.html");
+	nb->nb_correl_signi(c_varnames,"./"+GetJobName()+"correl_signi.txt","./"+GetJobName()+"correl_signi.html");
 
 	Log() << kINFO << "Executing NeuroBayes analysis macro" << Endl;
 	std::string path = "";
   	if(gSystem->Getenv("NEUROBAYES"))  path = gSystem->Getenv("NEUROBAYES");
 	else Log() << kFATAL << "Variable $NEUROBAYES not found, please check your environment setup" << Endl; 
 
-	TString PSFileName = GetJobName() + "_" + GetMethodName() + ".ps";
+	TString PSFileName = GetJobName() + "_" + GetMethodName() + ".pdf";
 	std::stringstream analysis_exec;
-	analysis_exec << "root -b -q $NEUROBAYES/external/analysis.C'(\"ahist.txt\",\"";
+	analysis_exec << "root -b -q $NEUROBAYES/external/analysis.C'(\""+GetJobName()+"ahist.txt\",\"";
 	analysis_exec << PSFileName;
-	analysis_exec << "\",1,\"correl_signi.txt\")'";
+	analysis_exec << "\",1,\""+GetJobName()+"correl_signi.txt\")'";
 	//gSystem->Exec("root -b -q $NEUROBAYES/external/analysis.C'(\"ahist.txt\",\"analysis.ps\",1,\"correl_signi.txt\")' && echo \"analysis.ps was generated\""); 
 	gSystem->Exec(analysis_exec.str().c_str()); 
 }
@@ -446,3 +447,18 @@ void TMVA::MethodNeuroBayes::dumpPseudoCodegen(){
 	outfile << "NETWORK classify 1" << std::endl;
 	outfile.close();
 }
+
+TMVA::IMethod* TMVA::MethodNeuroBayes::CreateMethodNeuroBayes(const TString& job, const TString& title, TMVA::DataSetInfo& dsi, const TString& option)
+{
+	if(job=="" && title=="") {
+		return (TMVA::IMethod*) new TMVA::MethodNeuroBayes(dsi, option);
+	} else {
+		return (TMVA::IMethod*) new TMVA::MethodNeuroBayes(job, title, dsi, option);
+	}
+}
+
+void TMVA::MethodNeuroBayes::RegisterNeuroBayes() {
+	TMVA::ClassifierFactory::Instance().Register("NeuroBayes", TMVA::MethodNeuroBayes::CreateMethodNeuroBayes);
+	TMVA::Types::Instance().AddTypeMapping(TMVA::Types::kPlugins, "NeuroBayes");
+}
+

@@ -12,6 +12,7 @@
 #define ROOT_TMVA_MethodNeuroBayes
 #ifndef ROOT_TMVA_MethodBase
 #include "TMVA/MethodBase.h"
+#include "TMVA/IMethod.h"
 //#include "TMVA/MethodLikelihood.h"
 #endif
 
@@ -63,6 +64,8 @@ namespace TMVA {
 		// default initialisation method called by all constructors
 		void     InitNeuroBayes( int );
 		static int CountInstanzes;
+		
+		static void RegisterNeuroBayes();
 
 
 	private:
@@ -104,6 +107,8 @@ namespace TMVA {
 		void ParseIndiviPreproFlagFromList();
 		void ParseIndiviPreproFlagByVarname();
 		void SetIndividualPreproParam(Int_t ivar, TObjArray*);
+		
+		static TMVA::IMethod* CreateMethodNeuroBayes(const TString& job, const TString& title, TMVA::DataSetInfo& dsi, const TString& option);
 
 		ClassDef(MethodNeuroBayes,1) //NeuroBase interface implemented at EKP Uni Karlsruhe 
 	    ;

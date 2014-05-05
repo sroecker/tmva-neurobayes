@@ -116,9 +116,7 @@ void TMVA::MethodNeuroBayes::InitEventSample( void )
 	// event loop on Training Data
  	for (Int_t ievt=0; ievt<nevents; ievt++) {
 
-		//ReadTrainingEvent( ievt,  Types::kTrueType );
-		//const Event* origEv = Data()->GetEvent(ievt);
-		Event* event = new Event( *GetTrainingEvent(ievt) );
+		const Event* event = GetTrainingEvent(ievt);
 
    		int nvar = GetNvar();
 

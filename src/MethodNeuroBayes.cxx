@@ -47,6 +47,7 @@ TMVA::MethodNeuroBayes::MethodNeuroBayes( const TString& jobName,
 	   : TMVA::MethodBase( jobName, Types::kPlugins, methodTitle, theData, theOption, theTargetDir )
 {
 	fTask = 1;
+	Net = NULL;
 	InitNeuroBayes(fTask);
 	MyID = CountInstanzes;
 	//Log() << kINFO << methodTitle << " got ID " << MyID << " theTargetDir =  " << theTargetDir << Endl;

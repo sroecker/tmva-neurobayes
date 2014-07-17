@@ -91,8 +91,8 @@ namespace TMVA {
 		Int_t fWeightUpdate;
 		Float_t fTrainTestRatio;
 		Int_t fNtrainingIter;
-		Float_t fLearingSpeed;
-		Float_t fLimitLearingSpeed;
+		Float_t fLearningSpeed;
+		Float_t fLimitLearningSpeed;
 		TString fTrainingMethod;
 		TString fNBIndiPreproFlagList;
 		TString fNBIndiPreproFlagVarname;

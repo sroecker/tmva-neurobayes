@@ -174,9 +174,9 @@ void TMVA::MethodNeuroBayes::DeclareOptions()
 	DeclareOptionRef(fWeightUpdate=200, "WeightUpdate", "Weight update: Normally, the weights are updated every 200 events.");
 
 	DeclareOptionRef(fNtrainingIter=100, "NtrainingIter", "Number of training iterations: This parameter defines the number of training iterations.");
-	DeclareOptionRef(fLearingSpeed=1.0, "LearingSpeed", "Increase learning speed by a multiplicative factor.");
+	DeclareOptionRef(fLearningSpeed=1.0, "LearningSpeed", "Increase learning speed by a multiplicative factor.");
 
-	DeclareOptionRef(fLimitLearingSpeed=1.0, "LimitLearingSpeed", "Limit learning speed: The maximal learning speed may be limited");
+	DeclareOptionRef(fLimitLearningSpeed=1.0, "LimitLearningSpeed", "Limit learning speed: The maximal learning speed may be limited");
 
 	DeclareOptionRef(fTrainingMethod="NOBFGS", "TrainingMethod", "Training Method: It is possible to use the BFGS algorithm");
 	AddPreDefVal(TString("BFGS"));
@@ -202,8 +202,8 @@ void TMVA::MethodNeuroBayes::ProcessOptions()
   		nb->NB_DEF_EPOCH(fWeightUpdate);           	// weight update after n events
   		nb->NB_DEF_MOM(fMomentum);	           	// Momentum 
   
-  		nb->NB_DEF_SPEED(fLearingSpeed);           	// multiplicative factor to enhance global learning speed
-  		nb->NB_DEF_MAXLEARN(fLimitLearingSpeed);     	// multiplicative factor to limit the global learning speed
+  		nb->NB_DEF_SPEED(fLearningSpeed);           	// multiplicative factor to enhance global learning speed
+  		nb->NB_DEF_MAXLEARN(fLimitLearningSpeed);     	// multiplicative factor to limit the global learning speed
 								// in any direction, this number should be smaller than NB_DEF_SPEED
 
   		nb->NB_DEF_ITER(fNtrainingIter);             	// number of training iteration

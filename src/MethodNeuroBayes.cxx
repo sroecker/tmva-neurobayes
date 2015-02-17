@@ -25,6 +25,8 @@
 
 #include "MethodNeuroBayes.h"
 
+using namespace std;
+
 ClassImp(TMVA::MethodNeuroBayes)
 
 int TMVA::MethodNeuroBayes::CountInstanzes = 0;

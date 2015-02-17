@@ -36,10 +36,10 @@ namespace TMVA {
 	      	virtual void Train( void );
 
 	      	// write weights to file
-	      	virtual void WriteWeightsToStream( ostream& o ) const;
+	      	virtual void WriteWeightsToStream( std::ostream& o ) const;
 
 	      	// read weights from file
-	      	virtual void ReadWeightsFromStream( istream& istr );
+	      	virtual void ReadWeightsFromStream( std::istream& istr );
 
 	      	void GetHelpMessage() const;
 		virtual void DeclareOptions();

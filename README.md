@@ -3,6 +3,8 @@ tmva-neurobayes
 
 NeuroBayes plugin for TMVA
 
+Originally written by Daniel Martschei, Institut für Experimentelle Kernphysik, KIT.
+
 ## Usage
 Compile with `make` and register the plugin in TMVA:
 
